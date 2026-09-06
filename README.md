@@ -168,7 +168,7 @@ required.
 Clone the repository and enter the project directory:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/egeakici/AlgorithmAnalysis_OBST.git
 cd AlgorithmAnalysis_OBST
 ```
 
@@ -359,6 +359,7 @@ cat experiments/results.csv
 - `docs/sample_output.txt`: actual captured output from the sample command
 - `experiments/results.csv`: actual timing experiment results
 - `report/report.md`: academic report source
+- `report/report.pdf`: PDF version of the academic report
 - `docs/algorithm.md`: detailed algorithm explanation and oral evaluation notes
 
 ## Report
@@ -367,19 +368,27 @@ The report is available at:
 
 ```text
 report/report.md
+report/report.pdf
 ```
 
 It includes the problem definition, DP formulation, pseudocode, implementation
 details, experimental results, conventional BST comparison, complexity analysis,
 discussion, conclusion, and references.
 
-If Pandoc is installed, it can be converted to PDF with:
+If the Markdown report is edited later and Pandoc is installed, it can be
+converted again with:
 
 ```bash
 pandoc report/report.md -o report/report.pdf
 ```
 
-No PDF is included unless it is actually generated.
+The repository also includes a standard-library PDF generator:
+
+```bash
+python scripts/generate_report_pdf.py
+```
+
+The included PDF is generated from the report source for final submission.
 
 ## Complexity
 

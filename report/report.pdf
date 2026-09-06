@@ -1,0 +1,332 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3402 >>
+stream
+BT /F2 16 Tf 50 792.00 Td (Design and Implementation of an Optimal Binary Search Tree Using Dynamic Programming) Tj ET
+BT /F2 13 Tf 50 758.00 Td (1. Introduction) Tj ET
+BT /F1 10 Tf 50 732.00 Td (This project implements an Optimal Binary Search Tree \(OBST\) using Dynamic) Tj ET
+BT /F1 10 Tf 50 716.00 Td (Programming for a university Design and Analysis of Algorithms assignment. The) Tj ET
+BT /F1 10 Tf 50 700.00 Td (goal is not only to produce a working program, but also to demonstrate the) Tj ET
+BT /F1 10 Tf 50 684.00 Td (algorithmic reasoning behind the solution: state definition, recurrence,) Tj ET
+BT /F1 10 Tf 50 668.00 Td (bottom-up table construction, reconstruction of the tree, verification of the) Tj ET
+BT /F1 10 Tf 50 652.00 Td (expected cost, complexity analysis, and experimental measurement.) Tj ET
+BT /F1 10 Tf 50 630.00 Td (A Binary Search Tree can store the same sorted set of keys in many different) Tj ET
+BT /F1 10 Tf 50 614.00 Td (shapes. Since a successful search follows a path from the root to the target) Tj ET
+BT /F1 10 Tf 50 598.00 Td (key, keys closer to the root require fewer comparisons. If all keys are equally) Tj ET
+BT /F1 10 Tf 50 582.00 Td (likely, a balanced tree is usually a reasonable goal. However, when some keys) Tj ET
+BT /F1 10 Tf 50 566.00 Td (are searched more frequently than others, the most useful tree is the one that) Tj ET
+BT /F1 10 Tf 50 550.00 Td (minimizes probability-weighted search cost. This is the motivation for the) Tj ET
+BT /F1 10 Tf 50 534.00 Td (Optimal BST problem.) Tj ET
+BT /F2 13 Tf 50 512.00 Td (2. Problem Definition) Tj ET
+BT /F1 10 Tf 50 486.00 Td (The input is a sorted set of unique keys:) Tj ET
+BT /F3 8.5 Tf 50 464.00 Td (K = {k1, k2, ..., kn}) Tj ET
+BT /F1 10 Tf 50 442.50 Td (and successful-search probabilities:) Tj ET
+BT /F3 8.5 Tf 50 420.50 Td (p = {p1, p2, ..., pn}) Tj ET
+BT /F1 10 Tf 50 399.00 Td (Each p_i is non-negative, and all probabilities sum to approximately 1.) Tj ET
+BT /F1 10 Tf 50 383.00 Td (Only successful searches are considered in this project.) Tj ET
+BT /F1 10 Tf 50 361.00 Td (The output is a Binary Search Tree that minimizes:) Tj ET
+BT /F3 8.5 Tf 50 339.00 Td (sum\(p_i * comparisons_i\)) Tj ET
+BT /F1 10 Tf 50 317.50 Td (The root depth is defined as 0. Therefore, the number of comparisons for a) Tj ET
+BT /F1 10 Tf 50 301.50 Td (successful search is:) Tj ET
+BT /F3 8.5 Tf 50 279.50 Td (comparisons_i = depth_i + 1) Tj ET
+BT /F2 13 Tf 50 258.00 Td (3. Dynamic Programming Formulation) Tj ET
+BT /F1 10 Tf 50 232.00 Td (Let C[i,j] represent the minimum expected successful-search cost for keys) Tj ET
+BT /F1 10 Tf 50 216.00 Td (k_i through k_j in mathematical 1-based notation.) Tj ET
+BT /F1 10 Tf 50 194.00 Td (Base cases:) Tj ET
+BT /F3 8.5 Tf 50 172.00 Td (C[i,i] = p_i) Tj ET
+BT /F3 8.5 Tf 50 160.50 Td (C[i,i-1] = 0) Tj ET
+BT /F1 10 Tf 50 139.00 Td (The first base case means that a subtree containing one key has one successful) Tj ET
+BT /F1 10 Tf 50 123.00 Td (comparison weighted by that key's probability. The second base case represents) Tj ET
+BT /F1 10 Tf 50 107.00 Td (an empty subtree, which contributes no search cost.) Tj ET
+BT /F1 10 Tf 50 85.00 Td (For an interval [i,j], every key r where i <= r <= j is tried as the root.) Tj ET
+BT /F1 10 Tf 50 69.00 Td (If r is chosen, then keys i..r-1 form the left subtree and keys r+1..j) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 1) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3659 >>
+stream
+BT /F1 10 Tf 50 792.00 Td (form the right subtree. Both subtrees become one level deeper under the selected) Tj ET
+BT /F1 10 Tf 50 776.00 Td (root, so the total probability weight of the interval must be added.) Tj ET
+BT /F1 10 Tf 50 754.00 Td (The recurrence is:) Tj ET
+BT /F3 8.5 Tf 50 732.00 Td (C[i,j] =) Tj ET
+BT /F3 8.5 Tf 50 720.50 Td (    sum\(p_s for s = i..j\)) Tj ET
+BT /F3 8.5 Tf 50 709.00 Td (    + min over r = i..j \(C[i,r-1] + C[r+1,j]\)) Tj ET
+BT /F1 10 Tf 50 687.50 Td (The implementation stores the same state with 0-based Python lists. Therefore,) Tj ET
+BT /F1 10 Tf 50 671.50 Td (mathematical C[i,j] corresponds to Python cost[i-1][j-1].) Tj ET
+BT /F1 10 Tf 50 649.50 Td (The project also stores a root[i][j] table. The cost table gives the optimal) Tj ET
+BT /F1 10 Tf 50 633.50 Td (value, but the root table records which root produced that value. Without the) Tj ET
+BT /F1 10 Tf 50 617.50 Td (root table, the program could report the minimum cost but could not efficiently) Tj ET
+BT /F1 10 Tf 50 601.50 Td (reconstruct the final tree.) Tj ET
+BT /F2 13 Tf 50 579.50 Td (4. Algorithm / Pseudocode) Tj ET
+BT /F3 8.5 Tf 50 553.50 Td (OBST\(keys, p\):) Tj ET
+BT /F3 8.5 Tf 50 542.00 Td (    n = number of keys) Tj ET
+BT /F3 8.5 Tf 50 530.50 Td () Tj ET
+BT /F3 8.5 Tf 50 519.00 Td (    create cost[n][n]) Tj ET
+BT /F3 8.5 Tf 50 507.50 Td (    create root[n][n]) Tj ET
+BT /F3 8.5 Tf 50 496.00 Td (    build prefix sums) Tj ET
+BT /F3 8.5 Tf 50 484.50 Td () Tj ET
+BT /F3 8.5 Tf 50 473.00 Td (    for i = 0 to n-1:) Tj ET
+BT /F3 8.5 Tf 50 461.50 Td (        cost[i][i] = p[i]) Tj ET
+BT /F3 8.5 Tf 50 450.00 Td (        root[i][i] = i) Tj ET
+BT /F3 8.5 Tf 50 438.50 Td () Tj ET
+BT /F3 8.5 Tf 50 427.00 Td (    for length = 2 to n:) Tj ET
+BT /F3 8.5 Tf 50 415.50 Td (        for i = 0 to n-length:) Tj ET
+BT /F3 8.5 Tf 50 404.00 Td (            j = i + length - 1) Tj ET
+BT /F3 8.5 Tf 50 392.50 Td (            cost[i][j] = infinity) Tj ET
+BT /F3 8.5 Tf 50 381.00 Td (            total_weight = weight\(i,j\)) Tj ET
+BT /F3 8.5 Tf 50 369.50 Td () Tj ET
+BT /F3 8.5 Tf 50 358.00 Td (            for r = i to j:) Tj ET
+BT /F3 8.5 Tf 50 346.50 Td (                left_cost = cost[i][r-1] if r > i else 0) Tj ET
+BT /F3 8.5 Tf 50 335.00 Td (                right_cost = cost[r+1][j] if r < j else 0) Tj ET
+BT /F3 8.5 Tf 50 323.50 Td (                candidate = left_cost + right_cost + total_weight) Tj ET
+BT /F3 8.5 Tf 50 312.00 Td () Tj ET
+BT /F3 8.5 Tf 50 300.50 Td (                if candidate < cost[i][j]:) Tj ET
+BT /F3 8.5 Tf 50 289.00 Td (                    cost[i][j] = candidate) Tj ET
+BT /F3 8.5 Tf 50 277.50 Td (                    root[i][j] = r) Tj ET
+BT /F3 8.5 Tf 50 266.00 Td () Tj ET
+BT /F3 8.5 Tf 50 254.50 Td (    tree = reconstruct\(root, 0, n-1\)) Tj ET
+BT /F3 8.5 Tf 50 243.00 Td (    return cost[0][n-1], cost, root, tree) Tj ET
+BT /F1 10 Tf 50 221.50 Td (The table is filled by increasing interval length. This guarantees that every) Tj ET
+BT /F1 10 Tf 50 205.50 Td (subproblem needed for a larger interval has already been computed.) Tj ET
+BT /F2 13 Tf 50 183.50 Td (5. Implementation) Tj ET
+BT /F1 10 Tf 50 157.50 Td (The implementation is divided into small modules:) Tj ET
+BT /F3 8.5 Tf 50 135.50 Td (| File | Purpose |) Tj ET
+BT /F3 8.5 Tf 50 120.00 Td (|---|---|) Tj ET
+BT /F3 8.5 Tf 50 104.50 Td (| `src/obst.py` | DP algorithm, validation, reconstruction, tree metrics |) Tj ET
+BT /F3 8.5 Tf 50 89.00 Td (| `src/models.py` | `TreeNode` and `OBSTResult` dataclasses |) Tj ET
+BT /F3 8.5 Tf 50 73.50 Td (| `src/conventional_bst.py` | Standard insertion-order BST baseline |) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 2) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 3595 >>
+stream
+BT /F3 8.5 Tf 50 792.00 Td (| `src/input_parser.py` | Text and CSV input parsers |) Tj ET
+BT /F3 8.5 Tf 50 776.50 Td (| `src/display.py` | Tables and ASCII tree formatting |) Tj ET
+BT /F3 8.5 Tf 50 761.00 Td (| `src/experiments.py` | Deterministic timing experiments |) Tj ET
+BT /F3 8.5 Tf 50 745.50 Td (| `src/main.py` | Command-line interface |) Tj ET
+BT /F1 10 Tf 50 724.00 Td (Input validation rejects empty input, duplicate keys, unsorted keys, negative) Tj ET
+BT /F1 10 Tf 50 708.00 Td (probabilities, malformed numeric values, and probability sums that are not) Tj ET
+BT /F1 10 Tf 50 692.00 Td (approximately 1. The selected tolerance is 1e-6, which is sufficient for) Tj ET
+BT /F1 10 Tf 50 676.00 Td (ordinary floating-point rounding differences in decimal inputs.) Tj ET
+BT /F1 10 Tf 50 654.00 Td (Prefix sums are used with:) Tj ET
+BT /F3 8.5 Tf 50 632.00 Td (prefix[0] = 0) Tj ET
+BT /F3 8.5 Tf 50 620.50 Td (prefix[i+1] = prefix[i] + p[i]) Tj ET
+BT /F3 8.5 Tf 50 609.00 Td (weight\(i,j\) = prefix[j+1] - prefix[i]) Tj ET
+BT /F1 10 Tf 50 587.50 Td (This makes the probability sum for any interval available in O\(1\) time.) Tj ET
+BT /F1 10 Tf 50 571.50 Td (Without prefix sums, repeatedly summing inside the nested DP loops would add) Tj ET
+BT /F1 10 Tf 50 555.50 Td (unnecessary work.) Tj ET
+BT /F2 13 Tf 50 533.50 Td (Sample Case) Tj ET
+BT /F1 10 Tf 50 507.50 Td (The required sample input is:) Tj ET
+BT /F3 8.5 Tf 50 485.50 Td (5) Tj ET
+BT /F3 8.5 Tf 50 474.00 Td (10 0.10) Tj ET
+BT /F3 8.5 Tf 50 462.50 Td (20 0.20) Tj ET
+BT /F3 8.5 Tf 50 451.00 Td (30 0.40) Tj ET
+BT /F3 8.5 Tf 50 439.50 Td (40 0.20) Tj ET
+BT /F3 8.5 Tf 50 428.00 Td (50 0.10) Tj ET
+BT /F1 10 Tf 50 406.50 Td (The computed DP cost table is:) Tj ET
+BT /F3 8.5 Tf 50 384.50 Td (                  10        20        30        40        50) Tj ET
+BT /F3 8.5 Tf 50 373.00 Td (        10    0.1000    0.4000    1.1000    1.5000    1.8000) Tj ET
+BT /F3 8.5 Tf 50 361.50 Td (        20         -    0.2000    0.8000    1.2000    1.5000) Tj ET
+BT /F3 8.5 Tf 50 350.00 Td (        30         -         -    0.4000    0.8000    1.1000) Tj ET
+BT /F3 8.5 Tf 50 338.50 Td (        40         -         -         -    0.2000    0.4000) Tj ET
+BT /F3 8.5 Tf 50 327.00 Td (        50         -         -         -         -    0.1000) Tj ET
+BT /F1 10 Tf 50 305.50 Td (The computed root table displays actual key values:) Tj ET
+BT /F3 8.5 Tf 50 283.50 Td (                  10        20        30        40        50) Tj ET
+BT /F3 8.5 Tf 50 272.00 Td (        10        10        20        30        30        30) Tj ET
+BT /F3 8.5 Tf 50 260.50 Td (        20         -        20        30        30        30) Tj ET
+BT /F3 8.5 Tf 50 249.00 Td (        30         -         -        30        30        30) Tj ET
+BT /F3 8.5 Tf 50 237.50 Td (        40         -         -         -        40        40) Tj ET
+BT /F3 8.5 Tf 50 226.00 Td (        50         -         -         -         -        50) Tj ET
+BT /F1 10 Tf 50 204.50 Td (The optimal root for the full interval is 30, so the reconstructed tree is:) Tj ET
+BT /F3 8.5 Tf 50 182.50 Td (30) Tj ET
+BT /F3 8.5 Tf 50 171.00 Td (|-- L: 20) Tj ET
+BT /F3 8.5 Tf 50 159.50 Td (|   `-- L: 10) Tj ET
+BT /F3 8.5 Tf 50 148.00 Td (`-- R: 40) Tj ET
+BT /F3 8.5 Tf 50 136.50 Td (    `-- R: 50) Tj ET
+BT /F1 10 Tf 50 115.00 Td (Depth and comparison table:) Tj ET
+BT /F3 8.5 Tf 50 93.00 Td (| Key | Probability | Depth | Comparisons |) Tj ET
+BT /F3 8.5 Tf 50 77.50 Td (|---:|---:|---:|---:|) Tj ET
+BT /F3 8.5 Tf 50 62.00 Td (| 10 | 0.10 | 2 | 3 |) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 3) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 3370 >>
+stream
+BT /F3 8.5 Tf 50 788.00 Td (| 20 | 0.20 | 1 | 2 |) Tj ET
+BT /F3 8.5 Tf 50 772.50 Td (| 30 | 0.40 | 0 | 1 |) Tj ET
+BT /F3 8.5 Tf 50 757.00 Td (| 40 | 0.20 | 1 | 2 |) Tj ET
+BT /F3 8.5 Tf 50 741.50 Td (| 50 | 0.10 | 2 | 3 |) Tj ET
+BT /F1 10 Tf 50 720.00 Td (Expected-cost verification:) Tj ET
+BT /F3 8.5 Tf 50 698.00 Td (0.40 * 1) Tj ET
+BT /F3 8.5 Tf 50 686.50 Td (+ 0.20 * 2) Tj ET
+BT /F3 8.5 Tf 50 675.00 Td (+ 0.20 * 2) Tj ET
+BT /F3 8.5 Tf 50 663.50 Td (+ 0.10 * 3) Tj ET
+BT /F3 8.5 Tf 50 652.00 Td (+ 0.10 * 3) Tj ET
+BT /F3 8.5 Tf 50 640.50 Td (= 1.8) Tj ET
+BT /F1 10 Tf 50 619.00 Td (The program independently recomputes this value from the reconstructed tree and) Tj ET
+BT /F1 10 Tf 50 603.00 Td (checks that it matches the DP result:) Tj ET
+BT /F3 8.5 Tf 50 581.00 Td (Minimum expected search cost \(DP\): 1.800000) Tj ET
+BT /F3 8.5 Tf 50 569.50 Td (Expected cost from reconstructed tree: 1.800000) Tj ET
+BT /F3 8.5 Tf 50 558.00 Td (Verification result: success) Tj ET
+BT /F2 13 Tf 50 536.50 Td (6. Experimental Results) Tj ET
+BT /F1 10 Tf 50 510.50 Td (Experiments are generated and timed by the program. The final values in this) Tj ET
+BT /F1 10 Tf 50 494.50 Td (section match experiments/results.csv.) Tj ET
+BT /F3 8.5 Tf 50 472.50 Td (| n | Mean execution seconds | Minimum expected cost | Seed | Repetitions |) Tj ET
+BT /F3 8.5 Tf 50 457.00 Td (|---|---:|---:|---:|---:|) Tj ET
+BT /F3 8.5 Tf 50 441.50 Td (| 5 | 0.00002218 | 1.79467990 | 2031 | 5 |) Tj ET
+BT /F3 8.5 Tf 50 426.00 Td (| 10 | 0.00008748 | 2.56711511 | 2036 | 5 |) Tj ET
+BT /F3 8.5 Tf 50 410.50 Td (| 20 | 0.00019740 | 3.03411892 | 2046 | 5 |) Tj ET
+BT /F3 8.5 Tf 50 395.00 Td (| 50 | 0.00313992 | 4.38649218 | 2076 | 5 |) Tj ET
+BT /F3 8.5 Tf 50 379.50 Td (| 100 | 0.02015206 | 5.31942274 | 2126 | 5 |) Tj ET
+BT /F1 10 Tf 50 358.00 Td (The experiment generator uses deterministic seeds. For each n, it creates) Tj ET
+BT /F1 10 Tf 50 342.00 Td (sorted unique keys, generates positive random weights, and normalizes those) Tj ET
+BT /F1 10 Tf 50 326.00 Td (weights so probabilities sum to 1. Input generation and terminal printing are) Tj ET
+BT /F1 10 Tf 50 310.00 Td (not included in the measured algorithm timing.) Tj ET
+BT /F1 10 Tf 50 288.00 Td (The measured running time increases as n grows, which is consistent with the) Tj ET
+BT /F1 10 Tf 50 272.00 Td (expected cubic behavior. In particular, increasing from n = 50 to n = 100) Tj ET
+BT /F1 10 Tf 50 256.00 Td (doubles the input size. The theoretical cubic model predicts approximately:) Tj ET
+BT /F3 8.5 Tf 50 234.00 Td (2^3 = 8 times more work) Tj ET
+BT /F1 10 Tf 50 212.50 Td (The measured time changes from 0.00313992 seconds to 0.02015206 seconds:) Tj ET
+BT /F3 8.5 Tf 50 190.50 Td (0.02015206 / 0.00313992 approximately 6.42) Tj ET
+BT /F1 10 Tf 50 169.00 Td (This is in the same growth direction as the theoretical factor of 8. Exact) Tj ET
+BT /F1 10 Tf 50 153.00 Td (ratios are not expected) Tj ET
+BT /F1 10 Tf 50 137.00 Td (because Python interpreter overhead, operating system scheduling, CPU caching,) Tj ET
+BT /F1 10 Tf 50 121.00 Td (timer noise, and small sample sizes can affect measured timings.) Tj ET
+BT /F2 13 Tf 50 99.00 Td (7. Comparison with a Conventional BST) Tj ET
+BT /F1 10 Tf 50 73.00 Td (The conventional BST baseline inserts the same keys in the supplied input order.) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 4) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 3427 >>
+stream
+BT /F1 10 Tf 50 792.00 Td (This is important because a conventional BST is insertion-order dependent. Since) Tj ET
+BT /F1 10 Tf 50 776.00 Td (the assignment input is sorted, direct insertion intentionally creates a highly) Tj ET
+BT /F1 10 Tf 50 760.00 Td (unbalanced tree:) Tj ET
+BT /F3 8.5 Tf 50 738.00 Td (10) Tj ET
+BT /F3 8.5 Tf 50 726.50 Td (`-- R: 20) Tj ET
+BT /F3 8.5 Tf 50 715.00 Td (    `-- R: 30) Tj ET
+BT /F3 8.5 Tf 50 703.50 Td (        `-- R: 40) Tj ET
+BT /F3 8.5 Tf 50 692.00 Td (            `-- R: 50) Tj ET
+BT /F1 10 Tf 50 670.50 Td (The comparison uses the same probabilities as the OBST. Therefore, the) Tj ET
+BT /F1 10 Tf 50 654.50 Td (difference in expected cost comes from tree shape rather than from changing the) Tj ET
+BT /F1 10 Tf 50 638.50 Td (input data.) Tj ET
+BT /F1 10 Tf 50 616.50 Td (For the sample input:) Tj ET
+BT /F3 8.5 Tf 50 594.50 Td (| Tree | Expected successful-search cost | Unweighted average depth |) Tj ET
+BT /F3 8.5 Tf 50 579.00 Td (|---|---:|---:|) Tj ET
+BT /F3 8.5 Tf 50 563.50 Td (| Optimal BST | 1.800000 | 1.200000 |) Tj ET
+BT /F3 8.5 Tf 50 548.00 Td (| Conventional sorted-insertion BST | 3.000000 | 2.000000 |) Tj ET
+BT /F1 10 Tf 50 526.50 Td (This shows that the OBST places high-probability keys closer to the root and) Tj ET
+BT /F1 10 Tf 50 510.50 Td (achieves a lower expected number of comparisons.) Tj ET
+BT /F2 13 Tf 50 488.50 Td (8. Complexity Analysis) Tj ET
+BT /F1 10 Tf 50 462.50 Td (Time complexity is O\(n^3\).) Tj ET
+BT /F1 10 Tf 50 440.50 Td (There are O\(n^2\) intervals [i,j] in the DP table. For each interval, the) Tj ET
+BT /F1 10 Tf 50 424.50 Td (standard algorithm tries each possible root inside the interval, which is up to) Tj ET
+BT /F1 10 Tf 50 408.50 Td (O\(n\) choices. Therefore:) Tj ET
+BT /F3 8.5 Tf 50 386.50 Td (O\(n^2\) * O\(n\) = O\(n^3\)) Tj ET
+BT /F1 10 Tf 50 365.00 Td (Space complexity is O\(n^2\).) Tj ET
+BT /F1 10 Tf 50 343.00 Td (The algorithm stores two n x n tables:) Tj ET
+BT /F3 8.5 Tf 50 321.00 Td (cost[n][n]) Tj ET
+BT /F3 8.5 Tf 50 309.50 Td (root[n][n]) Tj ET
+BT /F1 10 Tf 50 288.00 Td (The prefix sum array uses O\(n\) space, and the reconstructed tree uses O\(n\)) Tj ET
+BT /F1 10 Tf 50 272.00 Td (node space. These do not change the total asymptotic space complexity.) Tj ET
+BT /F2 13 Tf 50 250.00 Td (9. Discussion) Tj ET
+BT /F1 10 Tf 50 224.00 Td (An OBST is not necessarily the same as a balanced BST. A balanced BST focuses on) Tj ET
+BT /F1 10 Tf 50 208.00 Td (height, while an OBST focuses on probability-weighted search cost. If a key has) Tj ET
+BT /F1 10 Tf 50 192.00 Td (a high search probability, the optimal solution may move it closer to the root) Tj ET
+BT /F1 10 Tf 50 176.00 Td (even if the final tree is not perfectly balanced.) Tj ET
+BT /F1 10 Tf 50 154.00 Td (The conventional BST comparison is useful because it shows the weakness of) Tj ET
+BT /F1 10 Tf 50 138.00 Td (simple insertion-order construction. With sorted input, the conventional BST can) Tj ET
+BT /F1 10 Tf 50 122.00 Td (become a chain, giving poor search depth for many keys. The OBST avoids this by) Tj ET
+BT /F1 10 Tf 50 106.00 Td (evaluating all possible roots for each interval.) Tj ET
+BT /F1 10 Tf 50 84.00 Td (The implementation follows the required standard O\(n^3\) DP method. It does) Tj ET
+BT /F1 10 Tf 50 68.00 Td (not use Knuth optimization or another advanced optimization, because the) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 5) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 1765 >>
+stream
+BT /F1 10 Tf 50 792.00 Td (assignment focuses on the basic Dynamic Programming formulation.) Tj ET
+BT /F1 10 Tf 50 770.00 Td (One limitation is that this project handles only successful-search) Tj ET
+BT /F1 10 Tf 50 754.00 Td (probabilities. Some textbook versions of OBST also include unsuccessful-search) Tj ET
+BT /F1 10 Tf 50 738.00 Td (probabilities for gaps between keys. That extended model is outside the scope) Tj ET
+BT /F1 10 Tf 50 722.00 Td (of this assignment.) Tj ET
+BT /F2 13 Tf 50 700.00 Td (10. Conclusion) Tj ET
+BT /F1 10 Tf 50 674.00 Td (This project demonstrates a complete Dynamic Programming solution to the) Tj ET
+BT /F1 10 Tf 50 658.00 Td (Optimal Binary Search Tree problem. The cost table computes the minimum expected) Tj ET
+BT /F1 10 Tf 50 642.00 Td (search cost, the root table records the choices needed for reconstruction, and) Tj ET
+BT /F1 10 Tf 50 626.00 Td (the final tree is verified by recalculating expected cost from actual node) Tj ET
+BT /F1 10 Tf 50 610.00 Td (depths.) Tj ET
+BT /F1 10 Tf 50 588.00 Td (The sample case produces the expected minimum cost of 1.800000. The) Tj ET
+BT /F1 10 Tf 50 572.00 Td (conventional BST comparison produces a higher expected cost of 3.000000,) Tj ET
+BT /F1 10 Tf 50 556.00 Td (showing why probability-aware tree construction matters.) Tj ET
+BT /F2 13 Tf 50 534.00 Td (11. References) Tj ET
+BT /F1 10 Tf 50 508.00 Td (- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein,) Tj ET
+BT /F1 10 Tf 50 495.00 Td (  Introduction to Algorithms, Dynamic Programming chapter.) Tj ET
+BT /F1 10 Tf 50 479.00 Td (- Donald E. Knuth, The Art of Computer Programming, Volume 3: Sorting and) Tj ET
+BT /F1 10 Tf 50 466.00 Td (  Searching.) Tj ET
+BT /F1 8 Tf 282.50 28 Td (Page 6) Tj ET
+endstream
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000149 00000 n 
+0000000219 00000 n 
+0000000294 00000 n 
+0000000362 00000 n 
+0000000508 00000 n 
+0000003961 00000 n 
+0000004107 00000 n 
+0000007817 00000 n 
+0000007965 00000 n 
+0000011612 00000 n 
+0000011760 00000 n 
+0000015182 00000 n 
+0000015330 00000 n 
+0000018809 00000 n 
+0000018957 00000 n 
+trailer
+<< /Size 18 /Root 1 0 R >>
+startxref
+20774
+%%EOF

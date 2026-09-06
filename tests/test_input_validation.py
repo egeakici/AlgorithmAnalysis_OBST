@@ -43,6 +43,12 @@ class TestInputValidation(unittest.TestCase):
         self.assertEqual(keys, [10, 20])
         self.assertEqual(probabilities, [0.4, 0.6])
 
+    def test_csv_parser_accepts_case_insensitive_headers(self) -> None:
+        keys, probabilities = parse_csv_input(FIXTURE_DIR / "sample_uppercase.csv")
+
+        self.assertEqual(keys, [10, 20])
+        self.assertEqual(probabilities, [0.4, 0.6])
+
 
 if __name__ == "__main__":
     unittest.main()

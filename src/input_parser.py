@@ -67,7 +67,11 @@ def parse_text_input(path: str | Path) -> tuple[list[int | float], list[float]]:
 
 
 def parse_csv_input(path: str | Path) -> tuple[list[int | float], list[float]]:
-    """Parse CSV input with columns key,probability."""
+    """Parse CSV input with key and probability columns.
+
+    Header names are matched case-insensitively after trimming whitespace, so
+    both ``key,probability`` and ``Key,Probability`` are accepted.
+    """
 
     keys: list[int | float] = []
     probabilities: list[float] = []
@@ -76,13 +80,17 @@ def parse_csv_input(path: str | Path) -> tuple[list[int | float], list[float]]:
         if reader.fieldnames is None:
             raise ValueError("CSV file is empty or missing a header.")
         required_columns = {"key", "probability"}
-        normalized_fieldnames = {field.strip().lower() for field in reader.fieldnames}
-        if required_columns - normalized_fieldnames:
+        normalized_to_original = {
+            field.strip().lower(): field for field in reader.fieldnames if field is not None
+        }
+        if required_columns - set(normalized_to_original):
             raise ValueError("CSV header must contain 'key' and 'probability' columns.")
+        key_column = normalized_to_original["key"]
+        probability_column = normalized_to_original["probability"]
 
         for row_number, row in enumerate(reader, start=2):
-            key_value = row.get("key")
-            probability_value = row.get("probability")
+            key_value = row.get(key_column)
+            probability_value = row.get(probability_column)
             if key_value is None or probability_value is None:
                 raise ValueError(f"Row {row_number}: missing key or probability.")
             keys.append(parse_key(key_value.strip(), row_number))
