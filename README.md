@@ -124,6 +124,8 @@ matches the DP minimum.
 .
 |-- README.md
 |-- requirements.txt
+|-- scripts/
+|   `-- generate_report_pdf.py
 |-- src/
 |   |-- __init__.py
 |   |-- models.py
@@ -138,6 +140,7 @@ matches the DP minimum.
 |   |-- test_obst.py
 |   |-- test_input_validation.py
 |   |-- test_conventional_bst.py
+|   |-- test_experiments.py
 |   `-- fixtures/
 |-- data/
 |   |-- sample_input.txt
@@ -152,6 +155,7 @@ matches the DP minimum.
 |-- outputs/
 |   `-- .gitkeep
 `-- report/
+    |-- report.pdf
     |-- report.md
     `-- figures/
 ```

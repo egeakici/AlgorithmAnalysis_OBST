@@ -233,11 +233,11 @@ section match `experiments/results.csv`.
 
 | n | Mean execution seconds | Minimum expected cost | Seed | Repetitions |
 |---|---:|---:|---:|---:|
-| 5 | 0.00002218 | 1.79467990 | 2031 | 5 |
-| 10 | 0.00008748 | 2.56711511 | 2036 | 5 |
-| 20 | 0.00019740 | 3.03411892 | 2046 | 5 |
-| 50 | 0.00313992 | 4.38649218 | 2076 | 5 |
-| 100 | 0.02015206 | 5.31942274 | 2126 | 5 |
+| 5 | 0.00002722 | 1.79467990 | 2031 | 5 |
+| 10 | 0.00005962 | 2.56711511 | 2036 | 5 |
+| 20 | 0.00028114 | 3.03411892 | 2046 | 5 |
+| 50 | 0.00266794 | 4.38649218 | 2076 | 5 |
+| 100 | 0.01913680 | 5.31942274 | 2126 | 5 |
 
 The experiment generator uses deterministic seeds. For each `n`, it creates
 sorted unique keys, generates positive random weights, and normalizes those
@@ -252,14 +252,13 @@ doubles the input size. The theoretical cubic model predicts approximately:
 2^3 = 8 times more work
 ```
 
-The measured time changes from `0.00313992` seconds to `0.02015206` seconds:
+The measured time changes from `0.00266794` seconds to `0.01913680` seconds:
 
 ```text
-0.02015206 / 0.00313992 approximately 6.42
+0.01913680 / 0.00266794 approximately 7.17
 ```
 
-This is in the same growth direction as the theoretical factor of `8`. Exact
-ratios are not expected
+This is close to the theoretical factor of `8`. Exact ratios are not expected
 because Python interpreter overhead, operating system scheduling, CPU caching,
 timer noise, and small sample sizes can affect measured timings.
 
