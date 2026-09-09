@@ -1,6 +1,6 @@
 n,mean_execution_seconds,minimum_expected_cost,seed,repetitions,remarks
-5,0.00002722,1.79467990,2031,5,Deterministic generated keys and normalized probabilities
-10,0.00005962,2.56711511,2036,5,Deterministic generated keys and normalized probabilities
-20,0.00028114,3.03411892,2046,5,Deterministic generated keys and normalized probabilities
-50,0.00266794,4.38649218,2076,5,Deterministic generated keys and normalized probabilities
-100,0.01913680,5.31942274,2126,5,Deterministic generated keys and normalized probabilities
+5,0.00002920,1.79467990,2031,5,Deterministic generated keys and normalized probabilities
+10,0.00007034,2.56711511,2036,5,Deterministic generated keys and normalized probabilities
+20,0.00028648,3.03411892,2046,5,Deterministic generated keys and normalized probabilities
+50,0.00348190,4.38649218,2076,5,Deterministic generated keys and normalized probabilities
+100,0.02530854,5.31942274,2126,5,Deterministic generated keys and normalized probabilities
